@@ -1,0 +1,17 @@
+ChromeOptions options = new ChromeOptions();
+		options.addExtensions(new File("./Extensions/Adblock.crx"));
+    	WebDriver driver = new ChromeDriver(options);
+    	driver.get("https://automationexercise.com/");
+    	WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
+    	wait.until(ExpectedConditions.numberOfWindowsToBe(2));
+    	
+    	Set<String> ids = driver.getWindowHandles();
+    	Iterator<String> it  =ids.iterator();
+    	String first=it.next();
+    	String second = it.next();
+    	
+    	driver.switchTo().window(second);
+    	driver.close();
+    	driver.switchTo().window(first);
+    	driver.get("https://automationexercise.com/");
+    	//write your rest of code
